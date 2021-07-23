@@ -62,7 +62,7 @@
  		$this->_rules();
 
  		if($this->form_validation->run() == FALSE) {
- 			$this->updateData();
+ 			// $this->updateData();
  		}else{
  			$id 			= $this->input->post('id_vitamin');
  			$nama_vitamin	= $this->input->post('nama_vitamin');
@@ -90,7 +90,7 @@
  	public function deleteData($id)
  	{
  		$where = array('id_vitamin' => $id);
- 		$this->vitaminModel->delete_data($where, 'tb_vitamin');
+ 		$this->posModel->delete_data($where, 'tb_vitamin');
  		$this->session->set_flashdata('pesan','<div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>Data berhasil dihapus</strong>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

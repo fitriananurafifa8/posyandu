@@ -1,69 +1,10 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800"><?php echo $title?></h1>
         
     </div>
-
-    <div class="card mb-3">
-  <div class="card-header bg-warning text-white">
-    Filter Data Pemeriksaan Balita
-  </div>
-  <div class="card-body">
-    <form class="form-inline">
-    	<div class="form-group mb-2">
-    		<label for="staticemail2">Bulan</label>
-    		<select class="form-control ml-3" name="bulan">
-    			<option value="">--Pilih Bulan--</option>
-    			<option value="01">Januari</option>
-    			<option value="02">Februari</option>
-    			<option value="03">Mare</option>
-    			<option value="04">April</option>
-    			<option value="05">Mei</option>
-    			<option value="06">Juni</option>
-    			<option value="07">Juli</option>
-    			<option value="08">Agustus</option>
-    			<option value="09">September</option>
-    			<option value="10">Oktober</option>
-    			<option value="11">November</option>
-    			<option value="12">Desember</option>
-    		</select>
-    	</div>
-
-    	<div class="form-group mb-2 ml-5 ">
-    		<label for="staticemail2">Tahun</label>
-    		<select class="form-control ml-3" name="tahun">
-    			<option value="">--Pilih Tahun--</option>
-    			<?php $tahun = date('Y');
-    			for($i=2020;$i<$tahun+5;$i++) {?> 
-    			<option value="<?php echo $i ?>"><?php echo $i ?></option>
-    		<?php } ?>
-    		</select>
-    	</div>
-    	
-    	<button type="submit" class="btn btn-warning mb-2 ml-auto"><i class="fas fa-eye"> </i> Tampilkan Data</button>
-
-    </form> 
-
-  </div>
-</div>
-
-<?php
-		if((isset($_GET['bulan']) && $_GET['bulan']!='') && (isset($_GET['tahun']) && $_GET['tahun']!='')){
-			$bulan = $_GET['bulan'];
-			$tahun = $_GET['tahun'];
-			$bulantahun = $bulan.$tahun ;
-		}else{
-			$bulan = date('m');
-			$tahun = date('y'); 
-			$bulantahun = $bulan.$tahun; 
-		}
-?>
-<div class="alert alert-info">
-	Menampilkan Data Pemeriksaan Data Balita Bulan: <span class="font-weight-bold"><?php echo $bulan?></span> Tahun: <span class="font-weight-bold"><?php echo $tahun?></span>
-</div>
 <a class="btn btn-sm btn-primary mb-3" href="<?php echo base_url('admin/dataPemeriksaanbalita/addData') ?>"><i class="fas fa-plus"></i> Tambah Data Pemeriksaan Balita</a>
 
 <?php echo $this->session->flashdata('pesan') ?>
@@ -72,7 +13,7 @@
 	<tr>
 		<th class="text-center">No</th>
 		<th class="text-center">id pemeriksaan balita</th>
-		<th class="text-center">id balita</th>
+		<th class="text-center">Kode balita</th>
 		<th class="text-center">Nama</th>
 		<th class="text-center">Tanggal</th>
 		<th class="text-center">Berat Badan</th>
@@ -87,21 +28,21 @@
 	<?php $no=1; foreach($pemeriksaanbalita as $pb): ?>
 		<tr>
 			<td><?php echo $no++ ?></td>
-			<td><?php echo $i->id_pemeriksaanbalita ?></td>
-			<td><?php echo $i->id_balita ?></td>
-			<td><?php echo $i->nama ?></td>
-			<td><?php echo $i->tanggal ?></td>
-			<td><?php echo $i->berat_badan ?></td>
-			<td><?php echo $i->tinggi_badan ?></td>
-			<td><?php echo $i->lingkar_lengan ?></td>
-			<td><?php echo $i->lingkar_kepala ?></td>
-			<td><?php echo $i->vitamin ?></td>
-			<td><?php echo $i->imunisasi ?></td>
+			<td><?php echo $pb->kode_pemeriksaan ?></td>
+			<td><?php echo $pb->kode_balita ?></td>
+			<td><?php echo $pb->nama ?></td>
+			<td><?php echo $pb->tanggal ?></td>
+			<td><?php echo $pb->berat_badan ?></td>
+			<td><?php echo $pb->tinggi_badan ?></td>
+			<td><?php echo $pb->lingkar_lengan ?></td>
+			<td><?php echo $pb->lingkar_kepala ?></td>
+			<td><?php echo $pb->vitamin ?></td>
+			<td><?php echo $pb->imunisasi ?></td>
 
 			<td>
 				<center>
-					<a class="btn btn-sm btn-warning" href="<?php echo base_url('admin/dataPemeriksaanbalita/updateData/'.$i->id_imunisasi) ?>"><i class="fas fa-edit"></i></a>
-					<a onclick="return confirm('apakah ingin di hapus?')" class="btn btn-sm btn-danger" href="<?php echo base_url('admin /dataPemeriksaanbalita/deleteData/'.$i->id_pemeriksaanbalita) ?>"><i class="fas fa-trash"></i></a>
+					<a class="btn btn-sm btn-warning" href="<?php echo base_url('admin/dataPemeriksaanbalita/updateData/'.$pb->id_pemeriksaan) ?>"><i class="fas fa-edit"></i></a>
+					<a onclick="return confirm('apakah ingin di hapus?')" class="btn btn-sm btn-danger" href="<?php echo base_url('admin/dataPemeriksaanbalita/deleteData/'.$pb->id_pemeriksaan) ?>"><i class="fas fa-trash"></i></a>
 				</center>
 			</td>
 			

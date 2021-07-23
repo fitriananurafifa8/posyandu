@@ -10,52 +10,68 @@
     <div class="card">
     	<div class="card-body">
     		
-    		<form method="POST" action="<?php echo base_url('admiin/dataPemeriksaanibuhamil/addDataAksi') ?>">
+    		<form method="POST" action="<?php echo base_url('admin/dataPemeriksaanibuhamil/addDataAksi') ?>">
     			
+            <div class="form-group">
+    				<label>Id Pemeriksaan Ibu</label>
+    				<input type="text" name="kode_pemeriksaanibu" class="form-control">
+    			</div>
+
+				<div class="form-group">
+                        <label>Kode Ibu Hamil</label>
+                        <select class="form-control" name="kode_ibuhamil" id="kode_ibuhamil">
+                            <option selected>Kode Ibu Hamil</option>
+                            <?php foreach ($ibuhamil as $ib) : ?>
+                                <option value="<?= $ib->kode_ibuhamil ?>"><?= $ib->kode_ibuhamil ?></option>
+                            <?php endforeach; ?>
+                    </select>
+                </div>
+
+				<div class="form-group">
+                        <label>Nama Ibu Hamil</label>
+                        <select class="form-control" name="nama" id="nama">
+                            <option selected>Nama Ibu Hamil</option>
+                            <?php foreach ($ibuhamil as $ib) : ?>
+                                <option value="<?= $ib->nama_ibuhamil ?>"><?= $ib->nama_ibuhamil ?></option>
+                            <?php endforeach; ?>
+                    </select>
+                </div>
+
     			<div class="form-group">
-    				<label>id pemeriksaan ibu hamil</label>
-    				<input type="text" name="id_balita" class="form-control">
+    				<label>Tanggal</label>
+    				<input type="date" name="tanggal" class="form-control">
     			</div>
 
     			<div class="form-group">
-    				<label>Nama</label>
-    				<input type="text" name="nama" class="form-control">
+    				<label>Berat Badan</label>
+    				<input type="number" name="berat_badan" class="form-control">
     			</div>
 
-    			<div class="form-group">
-    				<label>Ttl</label>
-    				<input type="text" name="tll" class="form-control">
+				<div class="form-group">
+    				<label>Lingkar Lengan</label>
+    				<input type="number" name="lingkar_lengan" class="form-control">
     			</div>
 
-    			<div class="form-group">
-    				<label>Usia</label>
-    				<input type="number" name="usia" class="form-control">
-    			</div>
+				<div class="form-group">
+                        <label>Pilih Vitamin</label>
+                        <select class="form-control" name="vitamin" id="vitamin">
+                            <option selected>Pilih Vitamin</option>
+                            <?php foreach ($vitamin as $v) : ?>
+                                <option value="<?= $v->nama_vitamin ?>"><?= $v->nama_vitamin ?></option>
+                            <?php endforeach; ?>
+                    </select>
+                </div>
 
-    			<div class="form-group">
-    				<label>Jk</label>
-    				<select name="jk" class="form-control">
-    					<option value="">--Pilih Jenis Kelamin--</option>
-    					<option value="Laki-laki">Laki-laki</option>
-    					<option value="Perempuan">Perempuan</option>
-    				</select>
+				<div class="form-group">
+                        <label>Pilih Imunisasi</label>
+                        <select class="form-control" name="imunisasi" id="imunisasi">
+                            <option selected>Pilih Imunisasi</option>
+                            <?php foreach ($imunisasi as $i) : ?>
+                                <option value="<?= $i->nama_imunisasi ?>"><?= $i->nama_imunisasi ?></option>
+                            <?php endforeach; ?>
+                    </select>
+                </div>
 
-    			</div>
-
-    			<div class="form-group">
-    				<label>Nama Ortu</label>
-    				<input type="text" name="nama_ortu" class="form-control">
-    			</div>
-
-    			<div class="form-group">
-    				<label>No Hp</label>
-    				<input type="text" name="no_hp" class="form-control">
-    			</div>
-
-    			<div class="form-group">
-    				<label>Alamat</label>
-    				<input type="text" name="alamat" class="form-control">
-    			</div>
 				<button type="submit" class="btn btn-success">Submit</button>
 
     		</form>

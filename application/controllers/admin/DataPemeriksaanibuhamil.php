@@ -21,7 +21,7 @@
 		$data['vitamin'] = $this->posModel->get_data('tb_vitamin')->result();
  		$this->load->view('templates_admin/header', $data); 
 		$this->load->view('templates_admin/sidebar'); 
-		$this->load->view('admin/addDataPemerikaanibuhamil', $data); 
+		$this->load->view('admin/addDataPemeriksaanibuhamil', $data); 
 		$this->load->view('templates_admin/footer'); 
  	}
 
@@ -32,6 +32,8 @@
  		if($this->form_validation->run() == FALSE) {
  			$this->addData();
  		}else{
+ 			$kode_pemeriksaanibu			= $this->input->post('kode_pemeriksaanibu');
+ 			$kode_ibuhamil			= $this->input->post('kode_ibuhamil');
  			$nama			= $this->input->post('nama');
  			$tanggal		= $this->input->post('tanggal');
  			$berat_badan	= $this->input->post('berat_badan');
@@ -40,6 +42,8 @@
  			$imunisasi		= $this->input->post('imunisasi');
 
  			$data = array(
+				 'kode_pemeriksaanibu' 	=> $kode_pemeriksaanibu,
+				 'kode_ibuhamil' 	=> $kode_ibuhamil,
  					'nama' 		 	=> $nama,
  					'tanggal'	 	=> $tanggal,
  					'berat_badan' 	=> $berat_badan,
@@ -60,12 +64,14 @@
  	public function updateData($id)
  	{
  		$where = array('id_pemeriksaanibuhamil' => $id);
+		 $data['pemeriksaanibu'] = $this->db->query("SELECT * FROM tb_pemeriksaanibuhamil WHERE id_pemeriksaanibu='$id'")->result();
  		$data['title'] = "Ubah Data Pemeriksaan Ibu Hamil";
+		$data['ibuhamil'] = $this->posModel->get_data('tb_ibuhamil')->result();
  		$data['imunisasi'] = $this->posModel->get_data('tb_imunisasi')->result();
 		$data['vitamin'] = $this->posModel->get_data('tb_vitamin')->result();
  		$this->load->view('templates_admin/header', $data); 
 		$this->load->view('templates_admin/sidebar'); 
-		$this->load->view('admin/updatePemeriksaanibuhamil', $data); 
+		$this->load->view('admin/updateDataPemeriksaanibuhamil', $data); 
 		$this->load->view('templates_admin/footer'); 
  	}
 
@@ -74,18 +80,21 @@
  		$this->_rules();
 
  		if($this->form_validation->run() == FALSE) {
- 			$this->updateData();
+ 			// $this->updateData();
  		}else{
- 			$id 		   = $this->input->post('id_pemeriksaanibuhamil');
- 			$id            = $this->input->post('id_ibuhamil');
+ 			$id 		   = $this->input->post('id_pemeriksaanibu');
+			 $kode_pemeriksaanibu			= $this->input->post('kode_pemeriksaanibu');
+ 			$kode_ibuhamil            = $this->input->post('kode_ibuhamil');
  			$nama		   = $this->input->post('nama');
  			$tanggal       = $this->input->post('tanggal');
- 			$beratbadan    = $this->input->post('berat_badan');
- 			$lingkarlengan = $this->input->post('lingkar_lengan');
+ 			$berat_badan    = $this->input->post('berat_badan');
+ 			$lingkar_lengan = $this->input->post('lingkar_lengan');
  			$vitamin       = $this->input->post('vitamin');
  			$imunisasi     = $this->input->post('imunisasi');
 
  			$data = array(
+				'kode_pemeriksaanibu' 	=> $kode_pemeriksaanibu,
+ 					'kode_ibuhamil' 			 => $kode_ibuhamil,
  					'nama' 			 => $nama,
  					'tanggal' 		 => $tanggal,
  					'berat_badan'	 => $berat_badan,
@@ -95,8 +104,8 @@
 
  			);
 
- 			$where = array('id_pemeriksaanibuhamil' => $id);
- 			$where = array('id_ibuhamil' => $id);
+ 			$where = array('id_pemeriksaanibu' => $id);
+ 			// $where = array('id_ibuhamil' => $id);
 
  			$this->posModel->update_data('tb_pemeriksaanibuhamil',$data,$where);
  			$this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -119,7 +128,7 @@
 
  	public function deleteData($id)
  	{
- 		$where = array('id_pemeriksaanibuhamil' => $id);
+ 		$where = array('id_pemeriksaanibu' => $id);
  		$this->posModel->delete_data($where, 'tb_pemeriksaanibuhamil');
  		$this->session->set_flashdata('pesan','<div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>Data berhasil dihapus</strong>

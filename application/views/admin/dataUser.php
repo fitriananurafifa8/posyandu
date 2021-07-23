@@ -31,8 +31,8 @@
 
 		<td>
 				<center>
-					<a class="btn btn-sm btn-warning" href="<?php echo base_url('admin/dataUser/updateData/'.$b->id_user) ?>"><i class="fas fa-edit"></i></a>
-					<a onclick="return confirm('apakah ingin di hapus?')" class="btn btn-sm btn-danger" href="<?php echo base_url('admin /dataUser/deleteData/'.$i->id_user) ?>"><i class="fas fa-trash"></i></a>
+					<a class="btn btn-sm btn-warning" href="<?php echo base_url('admin/dataUser/updateData/'.$u->id_user) ?>"><i class="fas fa-edit"></i></a>
+					<a onclick="return confirm('apakah ingin di hapus?')" class="btn btn-sm btn-danger" href="<?php echo base_url('admin /dataUser/deleteData/'.$u->id_user) ?>"><i class="fas fa-trash"></i></a>
 				</center>
 			</td>
 

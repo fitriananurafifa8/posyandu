@@ -15,6 +15,7 @@
 	<table class="table table-bordered table-striped mt-2">
 		<tr>
 			<th class="text-center">No</th>
+			<th class="text-center">Kode Ibu Hamil</th>
 			<th class="text-center">Nama</th>
 			<th class="text-center">Tempat Lahir</th>
 			<th class="text-center">Tanggal Lahir</th>
@@ -27,6 +28,7 @@
 		<?php $no=1; foreach($ibuhamil as $i): ?>
 		<tr>
 			<td><?php echo $no++ ?></td>
+			<td><?php echo $i->kode_ibuhamil ?></td>
 			<td><?php echo $i->nama_ibuhamil ?></td>
 			<td><?php echo $i->tempat_lahir ?></td>
 			<td><?php echo $i->tanggal_lahir ?></td>

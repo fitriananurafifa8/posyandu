@@ -68,9 +68,10 @@
  		$this->_rules();
 
  		if($this->form_validation->run() == FALSE) {
- 			$this->updateData();
+ 			// $this->updateData();
  		}else{
- 			$no_pendaftaran         = $this->input->post('no_pendaftaran');
+			 $id = $this->input->post('id_pendaftaran');
+ 			$no_pendaftaran  = $this->input->post('no_pendaftaran');
  			$nama		= $this->input->post('nama');
  			$usia		= $this->input->post('usia');
  			$no_hp		= $this->input->post('no_hp');
@@ -82,7 +83,7 @@
  					'no_hp'	=> $no_hp
  			);
 
- 			$where = array('no_pendaftaran' => $no_pendaftaran);
+ 			$where = array('id_pendaftaran' => $id);
 
  			$this->posModel->update_data('tb_pendaftaran',$data,$where);
  			$this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -103,7 +104,7 @@
 
  	public function deleteData($id)
  	{
- 		$where = array('no_pendaftaran' => $no_pendaftaran);
+ 		$where = array('id_pendaftaran' => $id);
  		$this->posModel->delete_data($where, 'tb_pendaftaran');
  		$this->session->set_flashdata('pesan','<div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>Data berhasil dihapus</strong>

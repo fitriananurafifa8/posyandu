@@ -16,7 +16,7 @@
     			
     			<div class="form-group">
     				<label>Nama</label>
-                    <input type="hidden" name="no_pendaftaran" class="form-control" value="<?php echo $p->id_pendaftaran ?>">
+                    <input type="hidden" name="id_pendaftaran" class="form-control" value="<?php echo $p->id_pendaftaran ?>">
     				<input type="text" name="nama" class="form-control" value="<?php echo $p->nama ?>">
     				<?php echo form_error('nama','<div class="text-small text-danger"></div>')?>
     			</div>

@@ -16,9 +16,11 @@
  	public function addData()
  	{
  		$data['title'] = "Tambah Data Pemeriksaan";
+		
  		$data['balita'] = $this->posModel->get_data('tb_balita')->result();
- 	
- 		$this->load->view('templates_admin/header', $data); 
+ 		$data['vitamin'] = $this->posModel->get_data('tb_vitamin')->result();
+ 		$data['imunisasi'] = $this->posModel->get_data('tb_imunisasi')->result();
+		$this->load->view('templates_admin/header', $data); 
 		$this->load->view('templates_admin/sidebar'); 
 		$this->load->view('admin/addDataPemeriksaanbalita'); 
 		$this->load->view('templates_admin/footer'); 
@@ -31,6 +33,8 @@
  		if($this->form_validation->run() == FALSE) {
  			$this->addData();
  		}else{
+			$kode_pemeriksaan = $this->input->post('kode_pemeriksaan');
+			$kode_balita = $this->input->post('kode_balita');
  			$nama			= $this->input->post('nama');
  			$tanggal		= $this->input->post('tanggal');
  			$berat_badan	= $this->input->post('berat_badan');
@@ -42,6 +46,8 @@
  			
 
  			$data = array(
+				 'kode_pemeriksaan' => $kode_pemeriksaan,
+				 'kode_balita' => $kode_balita,
  					'nama' 			=> $nama,
  					'tanggal'	 	=> $tanggal,
  					'berat_badan' 	=> $berat_badan,
@@ -63,12 +69,15 @@
 
  	public function updateData($id)
  	{
- 		$where = array('id_pemeriksaanbalita' => $id);
- 		$data['pemeriksaanbalita'] = $this->db->query("SELECT * FROM tb_pemeriksaanbalita WHERE id_pemeriksaanbalita='$id'")->result();
+ 		$where = array('id_pemeriksaan' => $id);
+ 		$data['pemeriksaanbalita'] = $this->db->query("SELECT * FROM tb_pemeriksaanbalita WHERE id_pemeriksaan='$id'")->result();
  		$data['title'] = "Ubah Data Pemeriksaan Balita";
+		$data['balita'] = $this->posModel->get_data('tb_balita')->result();
+ 		$data['vitamin'] = $this->posModel->get_data('tb_vitamin')->result();
+ 		$data['imunisasi'] = $this->posModel->get_data('tb_imunisasi')->result();
  		$this->load->view('templates_admin/header', $data); 
 		$this->load->view('templates_admin/sidebar'); 
-		$this->load->view('admin/updateDataPamemeriksaanbalita', $data); 
+		$this->load->view('admin/updateDataPemeriksaanbalita', $data); 
 		$this->load->view('templates_admin/footer'); 
  	}
 
@@ -77,19 +86,23 @@
  		$this->_rules();
 
  		if($this->form_validation->run() == FALSE) {
- 			$this->updateData();
+ 			// $this->updateData();
  		}else{
- 			$id_pem     	  = $this->input->post('id_pemeriksaanbalita');
- 			$id_balita       = $this->input->post('id_balita');
+ 			$id    	  = $this->input->post('id_pemeriksaan');
+ 			$kode_pemeriksaan       = $this->input->post('kode_pemeriksaan');
+ 			$kode_balita       = $this->input->post('kode_balita');
  			$nama	      = $this->input->post('nama');
  			$tanggal	  = $this->input->post('tanggal');
  			$berat_badan  = $this->input->post('berat_badan');
  			$tinggi_badan  = $this->input->post('tinggi_badan');
  			$lingkar_lengan= $this->input->post('lingkar_lengan');
  			$lingkar_kepala= $this->input->post('lingkar_kepala');
- 			$id            = $this->input->post('id_imunisasi');
+ 			$vitamin= $this->input->post('vitamin');
+ 			$imunisasi= $this->input->post('imunisasi');
 
  			$data = array(
+ 					'kode_pemeriksaan' => $kode_pemeriksaan,
+ 					'kode_balita' => $kode_balita,
  					'nama' => $nama,
  					'tanggal'	 => $tanggal,
  					'berat_badan' => $berat_badan,
@@ -101,8 +114,8 @@
 
  			);
 
- 			$where = array('id_pemeriksaanbalita' => $id);
- 			$where = array('id_balita' => $id);
+ 			$where = array('id_pemeriksaan' => $id);
+ 			// $where = array('id_balita' => $id);
 
  			$this->posModel->update_data('tb_pemeriksaanbalita',$data,$where);
  			$this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -125,7 +138,7 @@
 
  	public function deleteData($id)
  	{
- 		$where = array('id_pemeriksaanbalita' => $id);
+ 		$where = array('id_pemeriksaan' => $id);
  		$this->posModel->delete_data($where, 'tb_pemeriksaanbalita');
  		$this->session->set_flashdata('pesan','<div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>Data berhasil dihapus</strong>

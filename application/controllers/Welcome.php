@@ -21,7 +21,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->_rules();
-		if($->form->validation->run()==FALSE) {
+		if($this->form->validation->run()==FALSE) {
 			$data['title'] = "Form Login";
 			$this->load->view('template_admin/header',$data);
 			$this->load->view('formLogin');
@@ -31,7 +31,7 @@ class Welcome extends CI_Controller {
 		}
 	}
 
-	puclic public function _rules()
+	public function _rules()
 	{
 		$this->form_validation->set_rules('username','username','required');
 		$this->form_validation->set_rules('password','password','required');

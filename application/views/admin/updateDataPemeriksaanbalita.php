@@ -6,26 +6,41 @@
         <h1 class="h3 mb-0 text-gray-800"><?php echo $title?></h1>
         
     </div>
-
-
     <div class="card" style="width: 60%">
-    	<div class="card-body">
-    		
+    	<div class="card-body">    		
             <?php foreach ($pemeriksaanbalita as $pb):?>
     		<form method="POST" action="<?php echo base_url('admin/dataPemeriksaanbalita/updateDataAksi')?>">
-    			
     			<div class="form-group">
-    				<label>Nama</label>
-                    <input type="hidden" name="id_pemeriksaanbalita" class="form-control" value="<?php echo $pb->id_pemeriksaanbalita ?>">
-                    <input type="hidden" name="id_balita" class="form-control" value="<?php echo $pb->id_balita ?>">
-    				<input type="text" name="nama" class="form-control" value="<?php echo $pb->nama ?>">
-    				<?php echo form_error('nama','<div class="text-small text-danger"></div>')?>
+    				<label>Kode Pemeriksaan</label>
+                    <input type="hidden" name="id_pemeriksaan" class="form-control" value="<?php echo $pb->id_pemeriksaan ?>">
+    				<input type="text" name="kode_pemeriksaan" class="form-control" value="<?php echo $pb->kode_pemeriksaan ?>">
+    				<?php echo form_error('kode_pemeriksaaan','<div class="text-small text-danger"></div>')?>
     			</div>
 
                 <div class="form-group">
+                        <label>Kode Balita</label>
+                        <select class="form-control" name="nama" id="nama">
+                            <option selected><?php echo $pb->kode_balita ?></option>
+                            <?php foreach ($balita as $b) : ?>
+                                <option value="<?= $b->kode_balita ?>"><?= $b->kode_balita ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                </div>
+
+                <div class="form-group">
+                        <label>Nama</label>
+                        <select class="form-control" name="nama" id="nama">
+                            <option selected><?php echo $pb->nama ?></option>
+                            <?php foreach ($balita as $b) : ?>
+                                <option value="<?= $b->nama_balita ?>"><?= $b->nama_balita ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                </div>
+
+                <div class="form-group">
                     <label>Tanggal</label>
-                    <input type="text" name="tanggal" class="form-control" value="<?php echo $pb->ttl ?>">
-                    <?php echo form_error('tanggal','<div class="text-small text-danger"></div>')?>
+                    <input type="date" name="tanggal" class="form-control" value="<?php echo $pb->tanggal ?>">
+                    <?php echo form_error('nama','<div class="text-small text-danger"></div>')?>
                 </div>
 
                 <div class="form-group">
@@ -53,25 +68,24 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Vitamin</label >
-                    <select name="vitamin" class="form-control">
-                        <option value="">--Pilih Vitamin--</option>
-                        <?php foreach($vitamin as $v) : ?>
-                        <option value="<?php echo $v->nama_vitamin?>"><?php echo $v->nama_vitamin ?></option>
-            
-                    </select>
+                        <label>Pilih Vitamin</label>
+                        <select class="form-control" name="vitamin" id="vitamin">
+                            <option selected><?php echo $pb->vitamin ?></option>
+                            <?php foreach ($vitamin as $v) : ?>
+                                <option value="<?= $v->nama_vitamin ?>"><?= $v->nama_vitamin ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                </div>   
 
                 <div class="form-group">
-                    <label>Imunisasi</label >
-                    <select name="imunisasi" class="form-control">
-                        <option value="">--Pilih Imunisasi--</option>
-                        <?php foreach($imunisasi as $i) : ?>
-                        <option value="<?php echo $i->nama_imunisasi?>"><?php echo $i->nama_imunisasi ?></option>
-                        <?php endforeach; ?>
-                    </select>
-
-                </div>
-
+                        <label>Pilih Imunisasi</label>
+                        <select class="form-control" name="imunisasi" id="imunisasi">
+                            <option selected><?php echo $pb->imunisasi ?></option>
+                            <?php foreach ($imunisasi as $i) : ?>
+                                <option value="<?= $i->nama_imunisasi ?>"><?= $i->nama_imunisasi ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                </div>                      
 
     			<button type="submit" class="btn btn-success">Update</button>
     		</form>
@@ -79,6 +93,4 @@
         <?php endforeach; ?>
     	</div>
     </div>
-
 </div>
-<!-- /.container-fluid -->

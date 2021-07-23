@@ -62,9 +62,9 @@
  		$this->_rules();
 
  		if($this->form_validation->run() == FALSE) {
- 			$this->updateData();
+ 			// $this->updateData();
  		}else{
- 			
+ 			$id					= $this->input->post('id_imunisasi');
  			$nama_imunisasi		= $this->input->post('nama_imunisasi');
  			$keterangan			= $this->input->post('keterangan');
 

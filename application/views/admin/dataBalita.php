@@ -42,7 +42,7 @@
 		<td>
 				<center>
 					<a class="btn btn-sm btn-warning" href="<?php echo base_url('admin/dataBalita/updateData/'.$b->id_balita) ?>"><i class="fas fa-edit"></i></a>
-					<a onclick="return confirm('apakah ingin di hapus?')" class="btn btn-sm btn-danger" href="<?php echo base_url('admin /dataBalita/deleteData/'.$b->id_balita) ?>"><i class="fas fa-trash"></i></a>
+					<a onclick="return confirm('apakah ingin di hapus?')" class="btn btn-sm btn-danger" href="<?php echo base_url('admin/dataBalita/deleteData/'.$b->id_balita) ?>"><i class="fas fa-trash"></i></a>
 				</center>
 			</td>
 
