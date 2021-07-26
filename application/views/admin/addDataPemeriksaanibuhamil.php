@@ -29,12 +29,13 @@
 
 				<div class="form-group">
                         <label>Nama Ibu Hamil</label>
-                        <select class="form-control" name="nama" id="nama">
+                        <!-- <select class="form-control" name="nama" id="nama">
                             <option selected>Nama Ibu Hamil</option>
                             <?php foreach ($ibuhamil as $ib) : ?>
                                 <option value="<?= $ib->nama_ibuhamil ?>"><?= $ib->nama_ibuhamil ?></option>
                             <?php endforeach; ?>
-                    </select>
+                    </select> -->
+                     <input type="text" name="nama" id="nama_ibuhamil" class="form-control">
                 </div>
 
     			<div class="form-group">
@@ -80,5 +81,16 @@
 
 </div>
 <!-- /.container-fluid -->
+<script type="text/javascript">
+    var dataIbuhamil = JSON.parse('<?php echo json_encode($ibuhamil) ?>')
+    var dropdownIbuhamil = document.querySelector('#kode_ibuhamil')
+    dropdownIbuhamil.addEventListener('change', function(){
+        var id = this.value
+        var objectIbuhamil = dataIbuhamil.find((ibuhamil) => ibuhamil.kode_ibuhamil == id)
+        document.querySelector('#nama_ibuhamil').value = objectIbuhamil.nama_ibuhamil
+    })
+
+</script>
+
 
            

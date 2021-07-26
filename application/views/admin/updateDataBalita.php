@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Jk</label>
+                    <label>Jenis kelamin</label>
                     <select name="jenis_kelamin" class="form-control">
                         <option value="<?php echo $b->jenis_kelamin ?>"><?php echo $b->jenis_kelamin ?></option>
                         <option value="Laki-laki">Laki-laki</option>

@@ -31,7 +31,7 @@
             <!-- Nav Item - pendaftaran -->
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('admin/dataPendaftaran')?>">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-database"></i>
                     <span>Pendaftaran</span></a>
             </li>
 
@@ -84,6 +84,13 @@
                 <a class="nav-link" href="<?php echo base_url('admin/dataVitamin')?>">
                     <i class="fas fa-fw fa-capsules"></i>
                     <span>Vitamin</span></a>
+            </li>
+
+             <!-- Nav Item - jadwal -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('admin/dataJadwal')?>">
+                     <i class="fas fa-fw fa-database"></i>
+                    <span>Jadwal Posyandu</span></a>
             </li>
             
 

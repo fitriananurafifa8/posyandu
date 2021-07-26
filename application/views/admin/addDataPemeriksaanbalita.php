@@ -7,13 +7,13 @@
         
     </div>
 
-    <div class="card">
+    <div class="card" height="100%">
     	<div class="card-body">
     		
     		<form method="POST" action="<?php echo base_url('admin/dataPemeriksaanbalita/addDataAksi') ?>">
     			
     			<div class="form-group">
-    				<label>Id Pemeriksaan Balita</label>
+    				<label>Kode Pemeriksaan Balita</label>
     				<input type="text" name="kode_pemeriksaan" class="form-control">
     			</div>
 
@@ -29,12 +29,13 @@
 
     			<div class="form-group">
                         <label>Nama</label>
-                        <select class="form-control" name="nama" id="nama" required>
+                        <!-- <select class="form-control" name="nama" id="nama" required>
                             <option selected>Nama Balita</option>
                             <?php foreach ($balita as $b) : ?>
                                 <option value="<?= $b->nama_balita ?>"><?= $b->nama_balita ?></option>
                             <?php endforeach; ?>
-                        </select>
+                        </select> -->
+                        <input type="text" name="nama" id="nama_balita" class="form-control">
                 </div>
 
     			<div class="form-group">
@@ -89,5 +90,17 @@
 
 </div>
 <!-- /.container-fluid -->
+<script type="text/javascript">
+    var dataBalita = JSON.parse('<?php echo json_encode($balita) ?>')
+    var dropdownBalita = document.querySelector('#kode_balita')
+    dropdownBalita.addEventListener('change', function(){
+        var id = this.value
+        var objectBalita = dataBalita.find((balita) => balita.kode_balita == id)
+        document.querySelector('#nama_balita').value = objectBalita.nama_balita
+        
+    })
+
+
+</script>
 
            
